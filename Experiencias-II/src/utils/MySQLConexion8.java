@@ -13,7 +13,7 @@ public class MySQLConexion8 {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			//determinar los datos de coneccion
 			       //driver:protocoloDriver/localhost
-			String url = "jdbc:mysql://localhost:3306/ciberfarma?serverTimezone=UTC";//"jdbc:mysql://localhost/ciberfarma:3306?useSSL=false&useTimezone=true&serverTimezone=UTC";
+			String url = "jdbc:mysql://localhost:3306/experiencias2?serverTimezone=UTC";//"jdbc:mysql://localhost/ciberfarma:3306?useSSL=false&useTimezone=true&serverTimezone=UTC";
 			String usr = "root"; //root
 			String psw = "Luisyevy4ever%"; //contraseña
 			con = DriverManager.getConnection(url, usr, psw);

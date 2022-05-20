@@ -4,27 +4,26 @@ public class Usuario {
 	private int codigo;
 	private String nombre;
 	private String apellido;
-	private String clave;
-	private String fNac;
-	private int tipo;
-	private int estado;
+	private String email;
+	private String celular;
+	private int distrito;
+	private String fecha;
 	
-	//constructores
+	
 	public Usuario() {
-		
+	
 	}
 
-	public Usuario(int codigo, String nombre, String apellido, String clave, String fNac, int tipo, int estado) {
+	public Usuario(int codigo, String nombre, String apellido, String email, String celular, int distrito,
+			String fecha) {
 		this.codigo = codigo;
 		this.nombre = nombre;
 		this.apellido = apellido;
-		this.clave = clave;
-		this.fNac = fNac;
-		this.tipo = tipo;
-		this.estado = estado;
+		this.email = email;
+		this.celular = celular;
+		this.distrito = distrito;
+		this.fecha = fecha;
 	}
-	
-	// metodos get / set
 
 	public int getCodigo() {
 		return codigo;
@@ -50,37 +49,43 @@ public class Usuario {
 		this.apellido = apellido;
 	}
 
-	public String getClave() {
-		return clave;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setClave(String clave) {
-		this.clave = clave;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
-	public String getfNac() {
-		return fNac;
+	public String getCelular() {
+		return celular;
 	}
 
-	public void setfNac(String fNac) {
-		this.fNac = fNac;
+	public void setCelular(String celular) {
+		this.celular = celular;
 	}
 
-	public int getTipo() {
-		return tipo;
+	public int getDistrito() {
+		return distrito;
 	}
 
-	public void setTipo(int tipo) {
-		this.tipo = tipo;
+	public void setDistrito(int distrito) {
+		this.distrito = distrito;
 	}
 
-	public int getEstado() {
-		return estado;
+	public String getFecha() {
+		return fecha;
 	}
 
-	public void setEstado(int estado) {
-		this.estado = estado;
+	public void setFecha(String fecha) {
+		this.fecha = fecha;
 	}
+	
+	
+	
+	
+	
+	
 	
 	
 }

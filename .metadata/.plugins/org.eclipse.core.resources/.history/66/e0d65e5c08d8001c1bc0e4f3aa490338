@@ -1,0 +1,14 @@
+package entidad;
+
+public class Usuario {
+	private int codigo;
+	private String nombre;
+	private String apellido;
+	private String email;
+	private String celular;
+	private String distrito;
+	private String fecha;
+	
+	
+	
+}
