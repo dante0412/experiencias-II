@@ -1,0 +1,16 @@
+package mantenimiento;
+
+import java.util.ArrayList;
+
+import entidad.Distrito;
+import interfaces.DistritoIntefacesDAO;
+
+public class GestionDistritoDAO implements DistritoIntefacesDAO{
+
+	@Override
+	public ArrayList<Distrito> listaDistrito() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

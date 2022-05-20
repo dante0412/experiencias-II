@@ -1,0 +1,52 @@
+package vista;
+
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
+import javax.swing.JProgressBar;
+
+public class FrmLoding extends JFrame {
+
+	private JPanel contentPane;
+	private JLabel lblCarga;
+	private final JProgressBar progressBar = new JProgressBar();
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					FrmLoding frame = new FrmLoding();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public FrmLoding() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 319, 90);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		lblCarga = new JLabel("El sistema esta cargando, espere unos segundos");
+		lblCarga.setBounds(10, 10, 416, 13);
+		contentPane.add(lblCarga);
+		progressBar.setBounds(10, 27, 285, 19);
+		contentPane.add(progressBar);
+	}
+
+}
