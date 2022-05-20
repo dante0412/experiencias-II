@@ -45,7 +45,6 @@ public class Login extends JFrame {
 	 * Create the frame.
 	 */
 	public Login() {
-		setTitle("Luana Star | Login");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 492, 258);
 		contentPane = new JPanel();
@@ -81,11 +80,11 @@ public class Login extends JFrame {
 		contentPane.add(txtPass);
 		
 		btnIngresar = new JButton("Ingresar");
-		btnIngresar.setBounds(110, 172, 85, 21);
+		btnIngresar.setBounds(110, 190, 85, 21);
 		contentPane.add(btnIngresar);
 		
 		btnCerrar = new JButton("Cerrar");
-		btnCerrar.setBounds(292, 172, 85, 21);
+		btnCerrar.setBounds(293, 190, 85, 21);
 		contentPane.add(btnCerrar);
 	}
 }
