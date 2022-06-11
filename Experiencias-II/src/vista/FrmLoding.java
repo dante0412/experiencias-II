@@ -49,6 +49,7 @@ public class FrmLoding extends JFrame implements ChangeListener {
 		}
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 319, 98);
+		this.setLocationRelativeTo(null);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -81,6 +82,7 @@ public class FrmLoding extends JFrame implements ChangeListener {
 			FrmPrincipal vent = new FrmPrincipal();
 			vent.setVisible(true);
 			vent.setLocationRelativeTo(this);
+			vent.setExtendedState(MAXIMIZED_BOTH);
 			this.dispose();
 		}
 	}

@@ -4,26 +4,29 @@ public class Usuario {
 	private int codigo;
 	private String nombre;
 	private String apellido;
-	private String email;
-	private String celular;
+	private String usuraio;
+	private String clave;
+	private String fNacim;
+	private int categoria;
 	private int distrito;
-	private String fecha;
 	
 	
 	public Usuario() {
-	
+
 	}
 
-	public Usuario(int codigo, String nombre, String apellido, String email, String celular, int distrito,
-			String fecha) {
+	public Usuario(int codigo, String nombre, String apellido, String usuraio, String clave, String fNacim, int categoria,
+			int distrito) {
 		this.codigo = codigo;
 		this.nombre = nombre;
 		this.apellido = apellido;
-		this.email = email;
-		this.celular = celular;
+		this.usuraio = usuraio;
+		this.clave = clave;
+		this.fNacim = fNacim;
+		this.categoria = categoria;
 		this.distrito = distrito;
-		this.fecha = fecha;
 	}
+	
 
 	public int getCodigo() {
 		return codigo;
@@ -49,20 +52,36 @@ public class Usuario {
 		this.apellido = apellido;
 	}
 
-	public String getEmail() {
-		return email;
+	public String getUsuraio() {
+		return usuraio;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setUsuraio(String usuraio) {
+		this.usuraio = usuraio;
 	}
 
-	public String getCelular() {
-		return celular;
+	public String getClave() {
+		return clave;
 	}
 
-	public void setCelular(String celular) {
-		this.celular = celular;
+	public void setClave(String clave) {
+		this.clave = clave;
+	}
+
+	public String getfNacim() {
+		return fNacim;
+	}
+
+	public void setfNacim(String fNacim) {
+		this.fNacim = fNacim;
+	}
+
+	public int getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(int categoria) {
+		this.categoria = categoria;
 	}
 
 	public int getDistrito() {
@@ -73,19 +92,4 @@ public class Usuario {
 		this.distrito = distrito;
 	}
 
-	public String getFecha() {
-		return fecha;
-	}
-
-	public void setFecha(String fecha) {
-		this.fecha = fecha;
-	}
-	
-	
-	
-	
-	
-	
-	
-	
 }

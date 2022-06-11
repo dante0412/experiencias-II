@@ -1,0 +1,272 @@
+package vista;
+
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
+
+import entidad.CategoriaProducto;
+import entidad.Distrito;
+import entidad.Producto;
+import entidad.Proveedor;
+import entidad.Usuario;
+import mantenimiento.GestionCategoriaProdDAO;
+import mantenimiento.GestionDistritoDAO;
+import mantenimiento.GestionProductosDAO;
+
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import javax.swing.JComboBox;
+import javax.swing.JRadioButton;
+import javax.swing.ButtonGroup;
+import javax.swing.JButton;
+import javax.swing.JTable;
+import javax.swing.JScrollPane;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.awt.event.ActionEvent;
+
+public class FrmProductos extends JFrame implements ActionListener {
+
+	private JPanel contentPane;
+	private JLabel lblCodigo;
+	private JLabel lblEmpresa;
+	private JLabel lblStock;
+	private JLabel lblPrecio;
+	private JLabel lblCategoria;
+	private JLabel lblProveedor;
+	private JTextField txtCodigo;
+	private JTextField txtEmpresa;
+	private JTextField txtStock;
+	private JTextField txtPrecio;
+	private JComboBox cboCategoria;
+	private JComboBox cboProveedor;
+	private JRadioButton rdbtnAgregar;
+	private JRadioButton rdbtnActualizar;
+	private JRadioButton rdbtnEliminar;
+	private JButton btnAceptar;
+	private JTable tblProductos;
+	private JScrollPane scrollPane;
+	DefaultTableModel model = new DefaultTableModel();
+	
+	GestionProductosDAO gPro = new GestionProductosDAO();
+	GestionDistritoDAO gDis = new GestionDistritoDAO();
+	GestionCategoriaProdDAO gCatP = new GestionCategoriaProdDAO();
+	
+	ButtonGroup group = new ButtonGroup();
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					FrmProductos frame = new FrmProductos();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public FrmProductos() {
+		setTitle("Mantenimiento | Producto");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 799, 449);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		lblCodigo = new JLabel("C\u00F3digo");
+		lblCodigo.setBounds(10, 11, 46, 14);
+		contentPane.add(lblCodigo);
+		
+		lblEmpresa = new JLabel("Empresa");
+		lblEmpresa.setBounds(10, 36, 88, 14);
+		contentPane.add(lblEmpresa);
+		
+		lblStock = new JLabel("Stock");
+		lblStock.setBounds(10, 61, 46, 14);
+		contentPane.add(lblStock);
+		
+		lblPrecio = new JLabel("Precio");
+		lblPrecio.setBounds(10, 86, 46, 14);
+		contentPane.add(lblPrecio);
+		
+		lblCategoria = new JLabel("Categoria");
+		lblCategoria.setBounds(10, 111, 88, 14);
+		contentPane.add(lblCategoria);
+		
+		lblProveedor = new JLabel("Proveedor");
+		lblProveedor.setBounds(10, 136, 88, 14);
+		contentPane.add(lblProveedor);
+		
+		txtCodigo = new JTextField();
+		txtCodigo.setBounds(108, 8, 182, 20);
+		contentPane.add(txtCodigo);
+		txtCodigo.setColumns(10);
+		
+		txtEmpresa = new JTextField();
+		txtEmpresa.setBounds(108, 33, 182, 20);
+		contentPane.add(txtEmpresa);
+		txtEmpresa.setColumns(10);
+		
+		txtStock = new JTextField();
+		txtStock.setBounds(108, 58, 182, 20);
+		contentPane.add(txtStock);
+		txtStock.setColumns(10);
+		
+		txtPrecio = new JTextField();
+		txtPrecio.setBounds(108, 83, 182, 20);
+		contentPane.add(txtPrecio);
+		txtPrecio.setColumns(10);
+		
+		cboCategoria = new JComboBox();
+		cboCategoria.setBounds(108, 107, 182, 22);
+		contentPane.add(cboCategoria);
+		
+		cboProveedor = new JComboBox();
+		cboProveedor.setBounds(108, 132, 182, 22);
+		contentPane.add(cboProveedor);
+		
+		rdbtnAgregar = new JRadioButton("Agregar");
+		rdbtnAgregar.setSelected(true);
+		rdbtnAgregar.setBounds(664, 32, 109, 23);
+		contentPane.add(rdbtnAgregar);
+		
+		rdbtnActualizar = new JRadioButton("Actualizar");
+		rdbtnActualizar.setBounds(664, 57, 109, 23);
+		contentPane.add(rdbtnActualizar);
+		
+		rdbtnEliminar = new JRadioButton("Eliminar");
+		rdbtnEliminar.setBounds(664, 82, 109, 23);
+		contentPane.add(rdbtnEliminar);
+		
+		btnAceptar = new JButton("Aceptar");
+		btnAceptar.addActionListener(this);
+		btnAceptar.setBounds(664, 132, 89, 23);
+		contentPane.add(btnAceptar);
+		
+		scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 174, 763, 225);
+		contentPane.add(scrollPane);
+		
+		tblProductos = new JTable();
+		scrollPane.setViewportView(tblProductos);
+		model.addColumn("Código");
+		model.addColumn("Nombre");
+		model.addColumn("Stock");
+		model.addColumn("Precio");
+		model.addColumn("Categoría");
+		model.addColumn("Proveedor");
+		tblProductos.setModel(model);
+		
+		group.add(rdbtnEliminar);
+		group.add(rdbtnActualizar);
+		group.add(rdbtnAgregar);
+		
+		cargarComboCategoria();
+		cargarComboProveedor();
+	}
+	
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnAceptar) {
+			actionPerformedBtnAceptar(e);
+		}
+	}
+	protected void actionPerformedBtnAceptar(ActionEvent e) {
+		if(rdbtnAgregar.isSelected()) {
+			
+		}else if(rdbtnActualizar.isSelected()) {
+			
+		}else {
+			
+		}
+	}
+	
+	private void limpiarCajas() {
+		txtCodigo.setText("");
+		txtEmpresa.setText("");
+		txtStock.setText("");
+		txtPrecio.setText("");
+		cboCategoria.setSelectedIndex(0);;
+		cboProveedor.setSelectedIndex(0);
+		txtCodigo.requestFocus();
+	}
+	
+	private void cargarComboCategoria() {
+		ArrayList<CategoriaProducto> listaCategoria = gCatP.listaCategoriaProducto();
+		
+		if (listaCategoria.size() == 0) {
+			mensajeError("Lista Vacia");
+		}else {
+			cboCategoria.addItem("Seleccione ...");
+			for(CategoriaProducto catPro : listaCategoria) {
+				cboCategoria.addItem(catPro.getDesc());
+			}
+		}
+	}
+	
+	private void cargarComboProveedor() {
+		ArrayList<Proveedor> listaProveedor = gCatP.listaProveedor();
+		
+		if (listaProveedor.size() == 0) {
+			mensajeError("Lista Vacia");
+		}else {
+			cboProveedor.addItem("Seleccione ...");
+			for(Proveedor Prov : listaProveedor) {
+				cboProveedor.addItem(Prov.getEmpresa());
+			}
+		}
+	}
+
+	private void mensajeError(String msj) {
+		JOptionPane.showMessageDialog(this, msj, "Error !!!", 0);
+		
+	}
+	
+	private void registrarProd() {
+		String cod, nombre;
+		int stock, categoria, proveedor;
+		double precio;
+		
+		cod = getCodigo();
+		nombre = getNombre();
+		stock = getStock();
+		precio = getPrecio();
+		categoria = getCategoria();
+		proveedor = getProveedor();
+		
+		if(cod == null || nombre == null || stock == -1 || precio == -1 || categoria == 0 || proveedor == 0) {
+			return;
+		}else {
+			Producto p = new Producto();
+			
+			u.setNombre(nomb);
+			u.setApellido(ape);
+			u.setUsuraio(user);;
+			u.setClave(clave);;
+			u.setfNacim(fecha);
+			u.setCategoria(categ);
+			u.setDistrito(distrito);
+			
+			int res = gUser.registrar(u);
+			
+			if(res == 0) {
+				mensajeError("Error en el registro");
+			}else {
+				mensajeExitoso("Registro Exitoso");
+			}
+		}
+	}
+}

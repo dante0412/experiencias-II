@@ -8,9 +8,13 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
+import entidad.Usuario;
 import hilos.Tiempo;
+import mantenimiento.GestionUsuarioDAO;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import java.awt.Color;
 import javax.swing.SwingConstants;
@@ -21,6 +25,7 @@ import java.awt.event.WindowListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JPasswordField;
 
 public class Login extends JFrame implements WindowListener, ActionListener {
 
@@ -29,12 +34,16 @@ public class Login extends JFrame implements WindowListener, ActionListener {
 	private JLabel lblPassword;
 	private JLabel lblNewLabel;
 	private JTextField txtUser;
-	private JTextField txtPass;
+	private JPasswordField txtPass;
 	private JButton btnIngresar;
 	private JButton btnCerrar;
 	private JLabel lblTexto;
 	public static JLabel lblTiempo;
 	public static Login frame;
+	
+	GestionUsuarioDAO gUser = new GestionUsuarioDAO();
+	
+	public static Usuario usuario = new Usuario();
 
 	/**
 	 * Launch the application.
@@ -66,6 +75,7 @@ public class Login extends JFrame implements WindowListener, ActionListener {
 		setTitle("Luana Star | Login");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 492, 258);
+		this.setLocationRelativeTo(null);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -93,7 +103,7 @@ public class Login extends JFrame implements WindowListener, ActionListener {
 		contentPane.add(txtUser);
 		txtUser.setColumns(10);
 		
-		txtPass = new JTextField();
+		txtPass = new JPasswordField();
 		txtPass.setColumns(10);
 		txtPass.setBounds(205, 138, 140, 19);
 		contentPane.add(txtPass);
@@ -104,6 +114,7 @@ public class Login extends JFrame implements WindowListener, ActionListener {
 		contentPane.add(btnIngresar);
 		
 		btnCerrar = new JButton("Cerrar");
+		btnCerrar.addActionListener(this);
 		btnCerrar.setBounds(292, 190, 85, 21);
 		contentPane.add(btnCerrar);
 		
@@ -142,13 +153,71 @@ public class Login extends JFrame implements WindowListener, ActionListener {
 		iniciarConteo();
 	}
 	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnCerrar) {
+			actionPerformedBtnCerrar(e);
+		}
 		if (e.getSource() == btnIngresar) {
 			actionPerformedBtnIngresar(e);
 		}
 	}
 	protected void actionPerformedBtnIngresar(ActionEvent e) {
+		validarAcceso();
+	}
+	
+	private String getClave() {
+		String clave = null;
+		clave = String.valueOf(txtPass.getPassword());
+		return clave;
+	}
+
+	private String getUsuario() {
+		String user = null;
+		user = txtUser.getText().trim();
+		return user;
+	}
+	
+	private void limpiarCajas() {
+		txtUser.setText("");
+		txtPass.setText("");
+		txtUser.requestFocus();
+	}
+	
+	private void mensajeError(String msj) {
+		JOptionPane.showMessageDialog(this, msj, "Error!!!", 0);
+		
+	}
+	
+	private void cargarBarraProgreso() {
 		FrmLoding l = new FrmLoding();
 		l.setVisible(true);
+		l.setLocationRelativeTo(this);
 		this.dispose();
+		
+	}
+	
+	private void validarAcceso() {
+		String user,clave;
+		//obtener los datos ingresados en la GUI
+		user = getUsuario();
+		clave = getClave();
+		
+		//validacion para que se ingrese los datos
+		if(user == null || clave == null) {
+			return;
+		} else {
+			//lammar al proiceso de validacion
+			usuario = gUser.validarAcceso(user, clave);
+			//validadr el resultado del proceso
+			if(usuario == null) {
+				mensajeError("Usuario y/o password incorrecto");
+				limpiarCajas();
+			}else {
+				cargarBarraProgreso();
+			}
+		}
+		
+	}
+	protected void actionPerformedBtnCerrar(ActionEvent e) {
+		dispose();
 	}
 }

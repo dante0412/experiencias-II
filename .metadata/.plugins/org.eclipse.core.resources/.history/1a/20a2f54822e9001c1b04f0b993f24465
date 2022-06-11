@@ -1,0 +1,19 @@
+package interfaces;
+
+import java.util.ArrayList;
+
+import entidad.Producto;
+
+public interface ProductoInterfacesDAO {
+	//registrar
+	public int registrar(Producto p);
+	
+	//actualizar
+	public int actualizar(Producto p);
+	
+	//eliminar 
+	public int eliminar(int codigo);
+	
+	//mostrar productos en tabla
+	public ArrayList<Producto> listaProductos();
+}

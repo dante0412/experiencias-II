@@ -1,0 +1,9 @@
+package interfaces;
+
+import java.util.ArrayList;
+
+import entidad.CategoriaProducto;
+
+public interface CategoriaProdInterfacesDAO {
+	public ArrayList<CategoriaProducto> listaCategoriaProducto();
+}

@@ -15,7 +15,7 @@ public class MySQLConexion8 {
 			       //driver:protocoloDriver/localhost
 			String url = "jdbc:mysql://localhost:3306/experiencias2?serverTimezone=UTC";//"jdbc:mysql://localhost/ciberfarma:3306?useSSL=false&useTimezone=true&serverTimezone=UTC";
 			String usr = "root"; //root
-			String psw = "Luisyevy4ever%"; //contraseña
+			String psw = "admin"; //contraseña
 			con = DriverManager.getConnection(url, usr, psw);
 		} catch (ClassNotFoundException e) {
 			System.out.println("Error >> Driver no Instalado!!" + e.getMessage());
