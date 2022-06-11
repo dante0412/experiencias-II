@@ -1,0 +1,72 @@
+package mantenimiento;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import entidad.Usuario;
+import entidad.UsuarioTabla;
+import interfaces.UsuarioInterfacesDAO;
+import utils.MySQLConexion8;
+
+public class GestionUsuarioDAO implements UsuarioInterfacesDAO{
+
+	@Override
+	public int registrar(Usuario u) {
+		int res = 0;
+		Connection con = null;
+		PreparedStatement pstm = null;
+		
+		try {
+			con = MySQLConexion8.getConexion();
+			
+			String sql = "INSERT INTO tb_usuarios VALUES (null, ?, ?, ?, ?, ?, ?, ?)";
+			
+			pstm = con.prepareStatement(sql);
+			
+			pstm.setString(1, u.getNombre());
+			pstm.setString(2, u.getApellido());
+			pstm.setString(3, u.getUsuraio());
+			pstm.setString(4, u.getClave());
+			pstm.setString(5, u.getfNacim());
+			pstm.setInt(6, u.getCategoria());
+			pstm.setInt(7, u.getDistrito());
+			
+			res = pstm.executeUpdate();
+			
+		} catch (Exception e) {
+			System.out.println(">>>>>>>>> Error en la Instruccion SQL - Registrar " + e.getMessage());
+		}finally {
+			try {
+				if(pstm != null) pstm.close();
+				if(con != null) con.close();
+			} catch (SQLException e2) {
+				System.out.println("<<<<<< Error al cerrar la base de datos " +e2.getMessage());
+			}
+		}
+		
+		return res;
+	}
+
+	@Override
+	public int actualizar(Usuario u) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int eliminar(int codigo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public ArrayList<UsuarioTabla> listaUsuarios() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+}

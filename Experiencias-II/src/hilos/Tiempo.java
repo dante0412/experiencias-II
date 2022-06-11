@@ -5,7 +5,7 @@ import vista.Login;
 public class Tiempo extends Thread{
 	@Override
 	public void run() {
-		for (int i = 10; i >= 0; i--) {
+		for (int i = 30; i >= 0; i--) {
 			Login.lblTiempo.setText(i + "s");
 			try {
 				Thread.sleep(1000);

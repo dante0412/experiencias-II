@@ -1,0 +1,34 @@
+package mantenimiento;
+
+import java.util.ArrayList;
+
+import entidad.Producto;
+import interfaces.ProductoInterfacesDAO;
+
+public class GestionProductosDAO implements ProductoInterfacesDAO{
+
+	@Override
+	public int registrar(Producto p) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int actualizar(Producto p) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int eliminar(int codigo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public ArrayList<Producto> listaProductos() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

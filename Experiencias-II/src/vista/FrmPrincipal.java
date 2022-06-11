@@ -16,6 +16,8 @@ import java.awt.event.InputEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JDesktopPane;
+import javax.swing.ImageIcon;
+import java.awt.Toolkit;
 
 public class FrmPrincipal extends JFrame implements ActionListener {
 
@@ -26,8 +28,10 @@ public class FrmPrincipal extends JFrame implements ActionListener {
 	private JMenuItem mntmSalir;
 	private JMenu mnReporte;
 	private JMenuItem mntmProducto;
-	private JMenuItem mntmClientes;
+	private JMenuItem mntmUsuarios;
 	private JDesktopPane escritorio;
+	private JMenu mnVentas;
+	private JMenuItem mntmGenerarVenta;
 
 	/**
 	 * Launch the application.
@@ -49,6 +53,7 @@ public class FrmPrincipal extends JFrame implements ActionListener {
 	 * Create the frame.
 	 */
 	public FrmPrincipal() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(FrmPrincipal.class.getResource("/img/stars.png")));
 		setTitle("Luana Star");
 		try {
 			//selecionar diseño a trabajar
@@ -66,6 +71,7 @@ public class FrmPrincipal extends JFrame implements ActionListener {
 		menuBar.add(mnSistema);
 		
 		mntmSalir = new JMenuItem("Salir");
+		mntmSalir.setIcon(new ImageIcon(FrmPrincipal.class.getResource("/img/salida.png")));
 		mntmSalir.addActionListener(this);
 		mntmSalir.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F5, InputEvent.ALT_DOWN_MASK));
 		mnSistema.add(mntmSalir);
@@ -73,12 +79,21 @@ public class FrmPrincipal extends JFrame implements ActionListener {
 		mnMantenimiento = new JMenu("Mantenimiento");
 		menuBar.add(mnMantenimiento);
 		
-		mntmClientes = new JMenuItem("Clientes");
-		mntmClientes.addActionListener(this);
-		mnMantenimiento.add(mntmClientes);
+		mntmUsuarios = new JMenuItem("Usuarios");
+		mntmUsuarios.setIcon(new ImageIcon(FrmPrincipal.class.getResource("/img/usuario (1).png")));
+		mntmUsuarios.addActionListener(this);
+		mnMantenimiento.add(mntmUsuarios);
 		
 		mntmProducto = new JMenuItem("Producto");
+		mntmProducto.setIcon(new ImageIcon(FrmPrincipal.class.getResource("/img/paquete.png")));
+		mntmProducto.addActionListener(this);
 		mnMantenimiento.add(mntmProducto);
+		
+		mnVentas = new JMenu("Ventas");
+		menuBar.add(mnVentas);
+		
+		mntmGenerarVenta = new JMenuItem("Realizar Venta");
+		mnVentas.add(mntmGenerarVenta);
 		
 		mnReporte = new JMenu("Reporte");
 		menuBar.add(mnReporte);
@@ -92,7 +107,10 @@ public class FrmPrincipal extends JFrame implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == mntmClientes) {
+		if (e.getSource() == mntmProducto) {
+			actionPerformedMntmProducto(e);
+		}
+		if (e.getSource() == mntmUsuarios) {
 			actionPerformedMntmClientes(e);
 		}
 		if (e.getSource() == mntmSalir) {
@@ -106,5 +124,10 @@ public class FrmPrincipal extends JFrame implements ActionListener {
 		FrmClientes cli = new FrmClientes();
 		cli.setVisible(true);
 		escritorio.add(cli);
+	}
+	protected void actionPerformedMntmProducto(ActionEvent e) {
+		FrmProductos prod = new FrmProductos();
+		prod.setVisible(true);
+		escritorio.add(prod);
 	}
 }
