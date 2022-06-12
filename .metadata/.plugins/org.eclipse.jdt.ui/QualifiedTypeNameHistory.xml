@@ -21,11 +21,9 @@
     <fullyQualifiedTypeName name="java.sql.ResultSet"/>
     <fullyQualifiedTypeName name="utils.MySQLConexion8"/>
     <fullyQualifiedTypeName name="java.sql.SQLException"/>
-    <fullyQualifiedTypeName name="mantenimiento.GestionCategoriasDAO"/>
     <fullyQualifiedTypeName name="entidad.CategoriaUsuarios"/>
     <fullyQualifiedTypeName name="java.text.ParseException"/>
     <fullyQualifiedTypeName name="interfaces.ProductoInterfacesDAO"/>
-    <fullyQualifiedTypeName name="javax.swing.table.DefaultTableModel"/>
     <fullyQualifiedTypeName name="mantenimiento.GestionProductosDAO"/>
     <fullyQualifiedTypeName name="mantenimiento.GestionDistritoDAO"/>
     <fullyQualifiedTypeName name="interfaces.CategoriaProdInterfacesDAO"/>
@@ -36,10 +34,14 @@
     <fullyQualifiedTypeName name="utils.Validaciones"/>
     <fullyQualifiedTypeName name="entidad.Producto"/>
     <fullyQualifiedTypeName name="entidad.ProductoTabla"/>
-    <fullyQualifiedTypeName name="javax.swing.JInternalFrame"/>
     <fullyQualifiedTypeName name="vista.FrmProductos"/>
-    <fullyQualifiedTypeName name="javax.swing.JOptionPane"/>
     <fullyQualifiedTypeName name="vista.FrmLoding"/>
-    <fullyQualifiedTypeName name="mantenimiento.GestionUsuarioDAO"/>
     <fullyQualifiedTypeName name="entidad.Usuario"/>
+    <fullyQualifiedTypeName name="javax.swing.table.DefaultTableModel"/>
+    <fullyQualifiedTypeName name="javax.swing.JOptionPane"/>
+    <fullyQualifiedTypeName name="mantenimiento.GestionCategoriasDAO"/>
+    <fullyQualifiedTypeName name="entidad.ReporteUsuario"/>
+    <fullyQualifiedTypeName name="mantenimiento.GestionUsuarioDAO"/>
+    <fullyQualifiedTypeName name="vista.FrmReporteUsuarios"/>
+    <fullyQualifiedTypeName name="javax.swing.JInternalFrame"/>
 </qualifiedTypeNameHistroy>

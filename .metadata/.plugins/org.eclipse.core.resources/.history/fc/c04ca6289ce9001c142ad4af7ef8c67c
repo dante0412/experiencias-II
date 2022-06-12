@@ -1,0 +1,46 @@
+package entidad;
+
+public class ReporteUsuario {
+	private int codigo;
+	private String nomApe;
+	private String Categoria;
+	
+	
+	public ReporteUsuario() {
+
+	}
+
+	public ReporteUsuario(int codigo, String nomApe, String categoria) {
+		this.codigo = codigo;
+		this.nomApe = nomApe;
+		Categoria = categoria;
+	}
+
+	
+	public int getCodigo() {
+		return codigo;
+	}
+
+	public void setCodigo(int codigo) {
+		this.codigo = codigo;
+	}
+
+	public String getNomApe() {
+		return nomApe;
+	}
+
+	public void setNomApe(String nomApe) {
+		this.nomApe = nomApe;
+	}
+
+	public String getCategoria() {
+		return Categoria;
+	}
+
+	public void setCategoria(String categoria) {
+		Categoria = categoria;
+	}
+	
+	
+	
+}
