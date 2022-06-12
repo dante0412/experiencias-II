@@ -32,6 +32,7 @@ public class FrmPrincipal extends JFrame implements ActionListener {
 	private JDesktopPane escritorio;
 	private JMenu mnVentas;
 	private JMenuItem mntmGenerarVenta;
+	private JMenuItem mntmReporteUsuarios;
 
 	/**
 	 * Launch the application.
@@ -97,6 +98,10 @@ public class FrmPrincipal extends JFrame implements ActionListener {
 		
 		mnReporte = new JMenu("Reporte");
 		menuBar.add(mnReporte);
+		
+		mntmReporteUsuarios = new JMenuItem("Reporte Usuario");
+		mntmReporteUsuarios.addActionListener(this);
+		mnReporte.add(mntmReporteUsuarios);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -107,6 +112,9 @@ public class FrmPrincipal extends JFrame implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == mntmReporteUsuarios) {
+			actionPerformedMntmReporteUsuarios(e);
+		}
 		if (e.getSource() == mntmProducto) {
 			actionPerformedMntmProducto(e);
 		}
@@ -129,5 +137,10 @@ public class FrmPrincipal extends JFrame implements ActionListener {
 		FrmProductos prod = new FrmProductos();
 		prod.setVisible(true);
 		escritorio.add(prod);
+	}
+	protected void actionPerformedMntmReporteUsuarios(ActionEvent e) {
+		FrmReporteUsuarios rU = new FrmReporteUsuarios();
+		rU.setVisible(true);
+		escritorio.add(rU);
 	}
 }

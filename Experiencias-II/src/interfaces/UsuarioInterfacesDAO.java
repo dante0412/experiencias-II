@@ -2,6 +2,7 @@ package interfaces;
 
 import java.util.ArrayList;
 
+import entidad.ReporteUsuario;
 import entidad.Usuario;
 import entidad.UsuarioTabla;
 
@@ -19,5 +20,8 @@ public interface UsuarioInterfacesDAO {
 	public ArrayList<UsuarioTabla> listaUsuarios();
 	
 	//validar el ingreso al sistema
-		public Usuario validarAcceso(String user, String clave);
+	public Usuario validarAcceso(String user, String clave);
+		
+	//reporte x tipo de usuario
+	public ArrayList<ReporteUsuario> listarReporteUsuarioxTipo(int tipo);
 }
