@@ -8,5 +8,7 @@ public class Validaciones {
 	public static final String USER = "[U]\\d{3}";
 	public static final String PRODUCTO = "[P]\\d{4}";
 	public static final String NOMBREPRO = "[a-zA-ZАИМСЗаимсзяЯ\\s]{3,50}";
+	public static final String DIRECCION = "[a-zA-ZАИМСЗаимсзяЯ0-9.\\s]{3,200}";	
+	public static final String EMPRESA = "[a-zA-ZАИМСЗаимсзяЯ0-9.\\s]{3,50}";
 	
 }

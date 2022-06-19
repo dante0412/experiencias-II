@@ -186,9 +186,9 @@ public class GestionUsuarioDAO implements UsuarioInterfacesDAO{
 			
 			pstm.setString(1, user);
 			pstm.setString(2, clave);
-			//paso 5: Ejecutar la instrucción
+
 			res = pstm.executeQuery();
-			//condicional
+
 			if(res.next()) {
 				usuario = new Usuario(res.getInt(1),
 									  res.getString(2),
@@ -222,27 +222,25 @@ public class GestionUsuarioDAO implements UsuarioInterfacesDAO{
 		Connection con = null;
 		ResultSet res = null;
 		try {
-			//paso 1: Establecer la coneccion a la base de datos
+
 			con = MySQLConexion8.getConexion();
-			//paso 2: Poder determinar la intruccion SQL --> Consultar
-			//
+
 			String sql = "call proc_reporteUsuarios(?);";
-			//paso 3
+			
 			pstm = con.prepareStatement(sql);
-			//paso 4 -->parametro de ingreso
+
 			pstm.setInt(1, tipo);
-			//paso 5 --> ejecutar la instruccion
+
 			res = pstm.executeQuery();
-			//paso 6 -> bucle para realizar el recorrido al objeto "res" (solo para consultar)
+			
 			while(res.next()){
-				//crear un objeto de tipo usuario
+
 				repUser = new ReporteUsuario();
-				// setear
+
 				repUser.setCodigo(res.getInt(1));
 				repUser.setNomApe(res.getString(2));
 				repUser.setCategoria(res.getString(3));
 				
-				//añadir el objeto "user" al arreglo
 				lista.add(repUser);
 			}
 			

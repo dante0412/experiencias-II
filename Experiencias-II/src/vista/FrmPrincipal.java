@@ -1,6 +1,7 @@
 package vista;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -33,6 +34,10 @@ public class FrmPrincipal extends JFrame implements ActionListener {
 	private JMenu mnVentas;
 	private JMenuItem mntmGenerarVenta;
 	private JMenuItem mntmReporteUsuarios;
+	private JMenuItem mntmProveedor;
+	private JMenuItem mntmReporteVentas;
+	private JMenu mnAyuda;
+	private JMenuItem mntmDesarrollador;
 
 	/**
 	 * Launch the application.
@@ -90,18 +95,39 @@ public class FrmPrincipal extends JFrame implements ActionListener {
 		mntmProducto.addActionListener(this);
 		mnMantenimiento.add(mntmProducto);
 		
+		mntmProveedor = new JMenuItem("Proveedor");
+		mntmProveedor.setIcon(new ImageIcon(FrmPrincipal.class.getResource("/img/mensajero.png")));
+		mntmProveedor.addActionListener(this);
+		mnMantenimiento.add(mntmProveedor);
+		
 		mnVentas = new JMenu("Ventas");
 		menuBar.add(mnVentas);
 		
 		mntmGenerarVenta = new JMenuItem("Realizar Venta");
+		mntmGenerarVenta.addActionListener(this);
+		mntmGenerarVenta.setIcon(new ImageIcon(FrmPrincipal.class.getResource("/img/bolsa-de-la-compra.png")));
 		mnVentas.add(mntmGenerarVenta);
 		
 		mnReporte = new JMenu("Reporte");
 		menuBar.add(mnReporte);
 		
 		mntmReporteUsuarios = new JMenuItem("Reporte Usuario");
+		mntmReporteUsuarios.setIcon(new ImageIcon(FrmPrincipal.class.getResource("/img/reporte.png")));
 		mntmReporteUsuarios.addActionListener(this);
 		mnReporte.add(mntmReporteUsuarios);
+		
+		mntmReporteVentas = new JMenuItem("Reporte de Ventas");
+		mntmReporteVentas.setIcon(new ImageIcon(FrmPrincipal.class.getResource("/img/reportar.png")));
+		mntmReporteVentas.addActionListener(this);
+		mnReporte.add(mntmReporteVentas);
+		
+		mnAyuda = new JMenu("Ayuda");
+		menuBar.add(mnAyuda);
+		
+		mntmDesarrollador = new JMenuItem("Acerca de Sistema");
+		mntmDesarrollador.setIcon(new ImageIcon(FrmPrincipal.class.getResource("/img/linux.png")));
+		mntmDesarrollador.addActionListener(this);
+		mnAyuda.add(mntmDesarrollador);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -109,9 +135,23 @@ public class FrmPrincipal extends JFrame implements ActionListener {
 		
 		escritorio = new JDesktopPane();
 		contentPane.add(escritorio, BorderLayout.CENTER);
+		
+		AxesoxTipoUsuario();
 	}
 
 	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == mntmDesarrollador) {
+			actionPerformedMntmDesarrollador(e);
+		}
+		if (e.getSource() == mntmReporteVentas) {
+			actionPerformedMntmReporteVentas(e);
+		}
+		if (e.getSource() == mntmGenerarVenta) {
+			actionPerformedMntmGenerarVenta(e);
+		}
+		if (e.getSource() == mntmProveedor) {
+			actionPerformedMntmProveedor(e);
+		}
 		if (e.getSource() == mntmReporteUsuarios) {
 			actionPerformedMntmReporteUsuarios(e);
 		}
@@ -124,7 +164,28 @@ public class FrmPrincipal extends JFrame implements ActionListener {
 		if (e.getSource() == mntmSalir) {
 			actionPerformedMntmSalir(e);
 		}
+		
+		
 	}
+	private void AxesoxTipoUsuario() {
+		switch(Login.usuario.getCategoria()) {
+			
+			case 2 :
+				mnMantenimiento.setVisible(false);
+				mnReporte.setVisible(false);
+				break;
+			case 3 :
+				mnVentas.setVisible(false);
+				mnReporte.setVisible(false);
+				mntmUsuarios.setVisible(false);
+				break;
+			case 4:
+				mnMantenimiento.setVisible(false);
+				mnVentas.setVisible(false);
+				mnReporte.setVisible(false);
+		}
+	}
+	
 	protected void actionPerformedMntmSalir(ActionEvent e) {
 		System.exit(0);
 	}
@@ -132,15 +193,57 @@ public class FrmPrincipal extends JFrame implements ActionListener {
 		FrmClientes cli = new FrmClientes();
 		cli.setVisible(true);
 		escritorio.add(cli);
+        Dimension desktopSize = escritorio.getSize();
+        Dimension FrameSize = cli.getSize();
+        cli.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height- FrameSize.height)/2);
+        
 	}
 	protected void actionPerformedMntmProducto(ActionEvent e) {
 		FrmProductos prod = new FrmProductos();
 		prod.setVisible(true);
 		escritorio.add(prod);
+		Dimension desktopSize = escritorio.getSize();
+        Dimension FrameSize = prod.getSize();
+        prod.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height- FrameSize.height)/2);
 	}
 	protected void actionPerformedMntmReporteUsuarios(ActionEvent e) {
 		FrmReporteUsuarios rU = new FrmReporteUsuarios();
 		rU.setVisible(true);
 		escritorio.add(rU);
+		Dimension desktopSize = escritorio.getSize();
+        Dimension FrameSize = rU.getSize();
+        rU.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height- FrameSize.height)/2);
+	}
+	protected void actionPerformedMntmProveedor(ActionEvent e) {
+		FrmProveedores prov = new FrmProveedores();
+		prov.setVisible(true);
+		escritorio.add(prov);
+		Dimension desktopSize = escritorio.getSize();
+        Dimension FrameSize = prov.getSize();
+        prov.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height- FrameSize.height)/2);
+	}
+	protected void actionPerformedMntmGenerarVenta(ActionEvent e) {
+		FrmBoleta bol = new FrmBoleta();
+		bol.setVisible(true);
+		escritorio.add(bol);
+		Dimension desktopSize = escritorio.getSize();
+        Dimension FrameSize = bol.getSize();
+        bol.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height- FrameSize.height)/2);
+	}
+	protected void actionPerformedMntmReporteVentas(ActionEvent e) {
+		FrmReporteVentas rv = new FrmReporteVentas();
+		rv.setVisible(true);
+		escritorio.add(rv);
+		Dimension desktopSize = escritorio.getSize();
+        Dimension FrameSize = rv.getSize();
+        rv.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height- FrameSize.height)/2);
+	}
+	protected void actionPerformedMntmDesarrollador(ActionEvent e) {
+		Desarrollador d = new Desarrollador();
+		d.setVisible(true);
+		escritorio.add(d);
+		Dimension desktopSize = escritorio.getSize();
+        Dimension FrameSize = d.getSize();
+        d.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height- FrameSize.height)/2);
 	}
 }

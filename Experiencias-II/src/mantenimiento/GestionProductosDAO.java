@@ -163,4 +163,51 @@ public class GestionProductosDAO implements ProductoInterfacesDAO{
 		return lista;
 	}
 
+	@Override
+	public ArrayList<Producto> buscarProducto(String prod) {
+		ArrayList<Producto> lista = new ArrayList<Producto>();
+		Producto produ = null;
+		PreparedStatement pstm = null;
+		Connection con = null;
+		ResultSet res = null;
+		try {
+			//paso 1: Establecer la coneccion a la base de datos
+			con = MySQLConexion8.getConexion();
+			//paso 2: Poder determinar la intruccion SQL --> Consultar
+			//
+			String sql = "{call proc_buscar_prod(?)}";
+			//paso 3
+			pstm = con.prepareStatement(sql);
+			//paso 4 -->parametro de ingreso
+			pstm.setString(1, prod);;
+			//paso 5 --> ejecutar la instruccion
+			res = pstm.executeQuery();
+			//paso 6 -> bucle para realizar el recorrido al objeto "res" (solo para consultar)
+			while(res.next()){
+				//crear un objeto de tipo usuario
+				produ = new Producto();
+				// setear
+				produ.setCod(res.getString(1));
+				produ.setNombre(res.getString(2));
+				produ.setStock(res.getInt(3));
+				produ.setPrecio(res.getDouble(4));
+				//añadir el objeto "user" al arreglo
+				lista.add(produ);
+			}
+			
+		} catch (Exception e) {
+			System.out.println(">>>>>>>>> Error en la Instruccion SQL - Consultar " + e.getMessage());
+		}
+		finally {
+			try {
+				if(pstm != null) pstm.close();
+				if(res !=null) res.close();
+				if(con != null) con.close();
+			} catch (SQLException e2) {
+				System.out.println("<<<<<< Error al cerrar la base de datos " +e2.getMessage());
+			}
+		}
+		return lista;
+	}
+
 }

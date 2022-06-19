@@ -1,0 +1,90 @@
+package vista;
+
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
+import java.util.ArrayList;
+
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
+
+import entidad.Producto;
+import mantenimiento.GestionProductosDAO;
+
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+import javax.swing.JTable;
+import javax.swing.JScrollPane;
+
+public class DlgProducto extends JDialog {
+
+	private final JPanel contentPanel = new JPanel();
+	private JLabel lblProducto;
+	private JTextField txtProducto;
+	private JTable tblProducto;
+	private JScrollPane scrollPane;
+	
+	DefaultTableModel model = new DefaultTableModel();
+	GestionProductosDAO gPro = new GestionProductosDAO();
+	private JButton btnAgregar;
+	
+	
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		try {
+			DlgProducto dialog = new DlgProducto();
+			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+			dialog.setVisible(true);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * Create the dialog.
+	 */
+	public DlgProducto() {
+		setTitle("Lista de Productos");
+		setBounds(100, 100, 450, 300);
+		getContentPane().setLayout(new BorderLayout());
+		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
+		getContentPane().add(contentPanel, BorderLayout.CENTER);
+		contentPanel.setLayout(null);
+		
+		lblProducto = new JLabel("Producto");
+		lblProducto.setBounds(10, 31, 77, 17);
+		contentPanel.add(lblProducto);
+		
+		txtProducto = new JTextField();
+		txtProducto.setBounds(97, 29, 251, 20);
+		contentPanel.add(txtProducto);
+		txtProducto.setColumns(10);
+		
+		scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 70, 414, 148);
+		contentPanel.add(scrollPane);
+		
+		tblProducto = new JTable();
+		scrollPane.setViewportView(tblProducto);
+		model.addColumn("Código");
+		model.addColumn("Producto");
+		model.addColumn("Stock");
+		model.addColumn("Precio");
+		tblProducto.setModel(model);
+		
+		btnAgregar = new JButton("Agregar");
+		btnAgregar.setBounds(170, 227, 89, 23);
+		contentPanel.add(btnAgregar);
+	}
+	
+	private void listarProductos(String prod) {
+		model.setRowCount(0);
+		
+		ArrayList<Producto> listProd = gPro.buscarProducto(prod);
+	}
+}

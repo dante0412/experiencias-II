@@ -37,6 +37,7 @@ import java.awt.event.MouseListener;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.awt.event.MouseEvent;
+import javax.swing.ImageIcon;
 
 public class FrmProductos extends JInternalFrame implements ActionListener, MouseListener {
 
@@ -66,6 +67,7 @@ public class FrmProductos extends JInternalFrame implements ActionListener, Mous
 	GestionCategoriaProdDAO gCatP = new GestionCategoriaProdDAO();
 	
 	ButtonGroup group = new ButtonGroup();
+	private JLabel lblNewLabel;
 
 	/**
 	 * Launch the application.
@@ -153,17 +155,17 @@ public class FrmProductos extends JInternalFrame implements ActionListener, Mous
 		
 		rdbtnAgregar = new JRadioButton("Agregar");
 		rdbtnAgregar.addActionListener(this);
-		rdbtnAgregar.setBounds(664, 32, 109, 23);
+		rdbtnAgregar.setBounds(664, 27, 109, 23);
 		contentPane.add(rdbtnAgregar);
 		
 		rdbtnActualizar = new JRadioButton("Actualizar");
 		rdbtnActualizar.addActionListener(this);
-		rdbtnActualizar.setBounds(664, 57, 109, 23);
+		rdbtnActualizar.setBounds(664, 52, 109, 23);
 		contentPane.add(rdbtnActualizar);
 		
 		rdbtnEliminar = new JRadioButton("Eliminar");
 		rdbtnEliminar.addActionListener(this);
-		rdbtnEliminar.setBounds(664, 82, 109, 23);
+		rdbtnEliminar.setBounds(664, 77, 109, 23);
 		contentPane.add(rdbtnEliminar);
 		
 		btnAceptar = new JButton("Aceptar");
@@ -189,6 +191,11 @@ public class FrmProductos extends JInternalFrame implements ActionListener, Mous
 		group.add(rdbtnEliminar);
 		group.add(rdbtnActualizar);
 		group.add(rdbtnAgregar);
+		
+		lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon(FrmProductos.class.getResource("/img/productos-lacteos (1).png")));
+		lblNewLabel.setBounds(438, 20, 142, 130);
+		contentPane.add(lblNewLabel);
 		
 		cargarComboCategoria();
 		cargarComboProveedor();
