@@ -197,17 +197,16 @@ public class Login extends JFrame implements WindowListener, ActionListener {
 	
 	private void validarAcceso() {
 		String user,clave;
-		//obtener los datos ingresados en la GUI
+	
 		user = getUsuario();
 		clave = getClave();
 		
-		//validacion para que se ingrese los datos
 		if(user == null || clave == null) {
 			return;
 		} else {
-			//lammar al proiceso de validacion
+		
 			usuario = gUser.validarAcceso(user, clave);
-			//validadr el resultado del proceso
+		
 			if(usuario == null) {
 				mensajeError("Usuario y/o password incorrecto");
 				limpiarCajas();

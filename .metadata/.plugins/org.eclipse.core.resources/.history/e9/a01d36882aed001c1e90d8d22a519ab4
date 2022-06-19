@@ -1,0 +1,35 @@
+package mantenimiento;
+
+import java.util.ArrayList;
+
+import entidad.EmpresaTabla;
+import entidad.Proveedor;
+import interfaces.ProveedorInterfacesDAO;
+
+public class GestionProveedoresDAO implements ProveedorInterfacesDAO{
+
+	@Override
+	public int registrar(Proveedor p) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int actualizar(Proveedor p) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int eliminar(int codigo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public ArrayList<EmpresaTabla> listaEmpresa() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

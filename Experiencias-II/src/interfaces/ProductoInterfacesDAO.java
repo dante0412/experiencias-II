@@ -17,4 +17,7 @@ public interface ProductoInterfacesDAO {
 	
 	//mostrar productos en tabla
 	public ArrayList<ProductoTabla> listaProductos();
+	
+	//consultar producto
+	public ArrayList<Producto> buscarProducto(String prod);
 }

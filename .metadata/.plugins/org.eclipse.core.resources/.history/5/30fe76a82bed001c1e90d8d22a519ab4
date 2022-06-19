@@ -1,0 +1,67 @@
+package mantenimiento;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import entidad.EmpresaTabla;
+import entidad.Proveedor;
+import interfaces.ProveedorInterfacesDAO;
+import utils.MySQLConexion8;
+
+public class GestionProveedoresDAO implements ProveedorInterfacesDAO{
+
+	@Override
+	public int registrar(Proveedor p) {
+		int res = 0;
+		Connection con = null;
+		PreparedStatement pstm = null;
+		
+		try {
+			con = MySQLConexion8.getConexion();
+			
+			String sql = "{call proc_registrarProv(null, ?, ?, ?, ?)}";
+			
+			pstm = con.prepareStatement(sql);
+			
+			pstm.setString(1, p.getEmpresa());
+			pstm.setString(2, p.getDireccion());
+			pstm.setInt(3, p.getDistrito());
+			pstm.setString(4, p.getTelefono());
+		
+			res = pstm.executeUpdate();
+			
+		} catch (Exception e) {
+			System.out.println(">>>>>>>>> Error en la Instruccion SQL - Registrar " + e.getMessage());
+		}finally {
+			try {
+				if(pstm != null) pstm.close();
+				if(con != null) con.close();
+			} catch (SQLException e2) {
+				System.out.println("<<<<<< Error al cerrar la base de datos " +e2.getMessage());
+			}
+		}
+		
+		return res;
+	}
+
+	@Override
+	public int actualizar(Proveedor p) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int eliminar(int codigo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public ArrayList<EmpresaTabla> listaEmpresa() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}
